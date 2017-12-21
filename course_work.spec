@@ -4,9 +4,9 @@ Release: 1
 Summary: Тестовое приложение для проверки работы скрипта
 Group: Development/Tools
 License: proprietary 
-Source0: ../src/cours_work.tar.gz 
+Source0: build.tar.gz 
 BuildArch: x86_64 
-BuildRoot: %{_tmppath}/cours_work-root 
+BuildRoot: %{_tmppath}/repositories
 
 %description 
 Тестовое приложение для проверки работы скрипта
