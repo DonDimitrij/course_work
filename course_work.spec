@@ -6,7 +6,7 @@ Group: Development/Tools
 License: proprietary 
 Source0: cours_work.tar.gz 
 BuildArch: x86_64 
-BuildRoot: /tmp/cours_work-root
+BuildRoot: /tmp/cours_work
 
 %description 
 Тестовое прмложение для проверки скрипата авто сборки
@@ -15,8 +15,8 @@ BuildRoot: /tmp/cours_work-root
 %setup -q -n cours_work
 
 %build
-qmake4 -r CONFIG+=build_all cours_work.pro
-make all
+qmake4 CONFIG+=build_all cours_work.pro
+make
 
 %install
 mkdir -p /usr/local/sbin/app
@@ -31,11 +31,8 @@ install tst_testtest /usr/local/sbin/
 
 %files
 %defattr(-,root,root)
-/usr/sbin/app
-/usr/sbin/tst_testtest
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+/usr/local/sbin/app/app
+/usr/local/sbin/test/tst_testtest
 
 %changelog
 * Tue Dec 21 2017 Kozlov
