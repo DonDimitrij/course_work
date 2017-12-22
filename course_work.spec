@@ -1,15 +1,15 @@
-Name: cours_work 
+О╩©Name: cours_work 
 Version: 1.0 
 Release: 1
-Summary: Тестовое приложение для проверки работы скрипта
+Summary: п╒п╣я│я┌п╬п╡п╬п╣ п©я─п╪п╩п╬п╤п╣п╫п╦п╣ п╢п╩я▐ п©я─п╬п╡п╣я─п╨п╦ я│п╨я─п╦п©п╟я┌п╟ п╟п╡я┌п╬ я│п╠п╬я─п╨п╦
 Group: Development/Tools
 License: proprietary 
-Source0: build.tar.gz 
+Source0: cours_work.tar.gz 
 BuildArch: x86_64 
-BuildRoot: %{_tmppath}/repositories
+BuildRoot: /tmp/cours_work-root
 
 %description 
-Тестовое приложение для проверки работы скрипта
+п╒п╣я│я┌п╬п╡п╬п╣ п©я─п╪п╩п╬п╤п╣п╫п╦п╣ п╢п╩я▐ п©я─п╬п╡п╣я─п╨п╦ я│п╨я─п╦п©п╟я┌п╟ п╟п╡я┌п╬ я│п╠п╬я─п╨п╦
 
 %prep
 %setup -q -n cours_work
@@ -19,13 +19,15 @@ qmake4 -r CONFIG+=build_all cours_work.pro
 make all
 
 %install
-mkdir -p $RPM_BUILD_ROOT/usr/sbin/app
-mkdir -p $RPM_BUILD_ROOT/usr/sbin/test
+mkdir -p /usr/local/sbin/app
+mkdir -p /usr/local/sbin/test
+
+INSTALL_ROOT=$RPM_BUILD_ROOT make install
 
 cd app/release
-install app $RPM_BUILD_ROOT/usr/sbin/
+install app /usr/local/sbin/
 cd ../../test/release
-install tst_testtest $RPM_BUILD_ROOT/usr/sbin/
+install tst_testtest /usr/local/sbin/
 
 %files
 %defattr(-,root,root)
@@ -33,7 +35,6 @@ install tst_testtest $RPM_BUILD_ROOT/usr/sbin/
 /usr/sbin/tst_testtest
 
 %clean
-make clean
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
